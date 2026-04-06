@@ -88,9 +88,6 @@ def do_train(start_epoch, args, model, train_loader, evaluator, optimizer,
                 "Epoch {} done. Time per batch: {:.3f}[s] Speed: {:.1f}[samples/s]"
                 .format(epoch, time_per_batch,
                         train_loader.batch_size / time_per_batch))
-        if (args.save_each_epoch and epoch % 10 == 0) or (args.save_each_epoch and epoch == 1):
-            arguments["epoch"] = epoch
-            checkpointer.save(f"{epoch}", **arguments)
         if epoch % eval_period == 0: 
         # if epoch % eval_period == 0 and epoch >= 61:
             if get_rank() == 0:
